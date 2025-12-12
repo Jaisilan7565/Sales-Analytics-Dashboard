@@ -32,7 +32,7 @@ __Features__
    
 -    Create a '.env' file in the backend directory and add the following:
    ```
-   MongoDB_Connection_String = <Use your MongoDB Connection String here.>
+   MONGODB_URL = <Use your MongoDB Connection String here.>
    PORT = <Enter your Required Port Number>
    ```
 6. __Run the application:__
