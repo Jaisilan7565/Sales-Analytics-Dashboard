@@ -131,28 +131,30 @@ const AnalyticsDashboard = () => {
       </div>
 
       {/* Date Picker */}
-      <div className="rounded-lg m-4 border-2 border-gray-200 shadow-md p-4 flex gap-4 items-center">
+      <div className="rounded-lg m-4 border-2 border-gray-200 shadow-md p-4 md:flex gap-4 items-center">
         <span className="font-semibold text-sm">Date Range:</span>
 
-        <input
-          type="date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-          className="border px-3 py-2 rounded-lg shadow-sm"
-        />
+        <div className="flex items-center space-x-2">
+          <input
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            className="border px-3 py-2 rounded-lg shadow-sm"
+          />
 
-        <span className="text-gray-800">to</span>
+          <span className="text-gray-800">to</span>
 
-        <input
-          type="date"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-          className="border px-3 py-2 rounded-lg shadow-sm"
-        />
+          <input
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            className="border px-3 py-2 rounded-lg shadow-sm"
+          />
+        </div>
       </div>
 
       {/* Summary Tiles */}
-      <div className="grid grid-cols-4 gap-4 px-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-6">
         <SummaryTile label="Total Sales" value={summary.totalSales} />
         <SummaryTile label="Total Ad Cost" value={`₹ ${summary.totalAdCost}`} />
         <SummaryTile
@@ -164,7 +166,7 @@ const AnalyticsDashboard = () => {
 
       {/* Line Chart */}
       <div className="m-6 p-4 rounded-lg shadow-md border-2 border-gray-200">
-        <div className="flex justify-between items-center mb-4">
+        <div className="md:flex space-y-4 md:space-y-0 justify-between items-center mb-4">
           <h2 className="text-xl font-bold">Trend Analysis</h2>
 
           {/* Shoe Selector */}
@@ -186,20 +188,22 @@ const AnalyticsDashboard = () => {
           {/* Metric Selector */}
           <div className="flex gap-4 flex-wrap">
             <span className="font-semibold">Metrics (Max 2):</span>
-            {metricOptions.map((metric) => (
-              <label key={metric.key} className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  checked={selectedMetrics.includes(metric.key)}
-                  onChange={() => handleMetricChange(metric.key)}
-                />
-                {metric.label}
-              </label>
-            ))}
+            <div className="flex justify-between gap-4 flex-wrap">
+              {metricOptions.map((metric) => (
+                <label key={metric.key} className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={selectedMetrics.includes(metric.key)}
+                    onChange={() => handleMetricChange(metric.key)}
+                  />
+                  {metric.label}
+                </label>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="h-150 flex justify-center">
+        <div className="md:h-150 flex justify-center">
           <LineChart
             data={chartData}
             xKey="date"
